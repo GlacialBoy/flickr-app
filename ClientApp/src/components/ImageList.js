@@ -1,4 +1,3 @@
-import queryString from 'query-string'
 import React, { Component } from 'react';
 
 import GridList from '@material-ui/core/GridList';
