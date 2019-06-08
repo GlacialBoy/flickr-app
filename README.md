@@ -8,12 +8,20 @@ The application is composed as:
 
 ## Features
 - Load set of public images from Flickr
-- Clicking the images you'll open the specific Flickr page
+- Open the Flick link if the user click the image
 - Search for Tags (also multiple tags, separated by spaces)
 
 ## Run
 Using a bash or command type, build the project with `dotnet build` and `dotnet run`.
 As a IDE I've used Visual Studio Code, so there is no solution file.
+
+## Run using Docker
+You can run the whole project as a docker container:
+```bash
+$ cd flickr-app
+$ docker build -t flickr-app .
+$ docker run flickr-app:latest
+```
 
 ## Structure
 ASP.NET Core and WebApi in the backend, React with Bootstrap and Material UI component as a front-end layer
