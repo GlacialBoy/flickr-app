@@ -30,6 +30,5 @@ ASP.NET Core and WebApi in the backend, React with Bootstrap and Material UI com
 Flickr public apis https://www.flickr.com/services/feeds/docs/photos_public/ 
 
 ## Testing
-There is another project "flickr-app" that is testing the app. 
-It contains test on the parsing component of the apis.
+There is another project "flickr-app.Test" for the testing part.
 To run the test execute `dotnet test`
