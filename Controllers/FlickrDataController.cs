@@ -22,20 +22,29 @@ namespace flickr_app.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<IEnumerable<FlickrFeedItem>> Images()
+        public async Task<IEnumerable<FlickrFeedItem>> Images(string query)
         {
-            IEnumerable<FlickrFeedItem> result = await GetImagesFromFlickr();
+            IEnumerable<FlickrFeedItem> result = await GetImagesFromFlickr(query);
+            Console.WriteLine(result);
             return result;
         }
 
-        private async Task<IEnumerable<FlickrFeedItem>> GetImagesFromFlickr()
+        private async Task<IEnumerable<FlickrFeedItem>> GetImagesFromFlickr(string query)
         {
             HttpClient client = _clientFactory.CreateClient();
-            const String flickrUrl = "https://www.flickr.com/services/feeds/photos_public.gne?format=json";
-            
-            var response = await client.GetStringAsync(flickrUrl);
+
+            UriBuilder build = new UriBuilder("https://www.flickr.com/services/feeds/photos_public.gne?format=json");
+
+
+            if (!String.IsNullOrEmpty(query))
+            {
+                string tags = Regex.Replace(query,"\\s+",",");
+                build.Query = build.Query + "&tags=" + Uri.EscapeDataString(tags);
+            }            
+
+            var response = await client.GetStringAsync(build.ToString());
             var cleanedResponse = cleanMalformedJson(response);
-                    
+
             FlickrFeed responseFeed = JsonConvert.DeserializeObject<FlickrFeed>(cleanedResponse);
 
             return responseFeed.items;
