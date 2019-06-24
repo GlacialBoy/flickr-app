@@ -10,8 +10,8 @@ RUN dotnet restore
 
 # Copy everything else and build
 COPY . ./
-RUN dotnet publish -c Release -o out
-#RUN dotnet publish "./flickr-app.csproj" --output "./dist" --configuration Release --no-restore
+#RUN dotnet publish -c Release -o out
+RUN dotnet publish "./flickr-app.csproj" --output "./out" --configuration Release --no-restore
 
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
