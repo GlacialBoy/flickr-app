@@ -20,7 +20,17 @@ You can run the whole project as a docker container:
 ```bash
 $ cd flickr-app
 $ docker build -t flickr-app .
-$ docker run flickr-app:latest
+$ docker run -p 80:80 flickr-app:latest
+$ echo The app is available in $(docker-machine ip):80
+```
+or simply with docker compose
+```bash
+$ cd flickr-app
+$ docker-compose up
+```
+It will use the port 80, if you have a virtualization please run 
+```bash
+$ echo The app is available in $(docker-machine ip):80
 ```
 
 ## Structure
