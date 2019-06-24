@@ -25,6 +25,5 @@ namespace flickr_app.Controllers
             IEnumerable<FlickrFeedItem> result = await this.flickrProvider.GetImagesFromFlickr(query);
             return result;
         }
-
     }
 }

@@ -27,16 +27,16 @@ namespace flickr_app.Provider
         {
             HttpClient client = _clientFactory.CreateClient();
 
-            string url = this.composeUrl(query);
+            string url = ComposeUrl(query);
             string response = await client.GetStringAsync(url);
-            string cleanedResponse = cleanMalformedJson(response);
+            string cleanedResponse = CleanMalformedJson(response);
 
             FlickrFeed responseFeed = JsonConvert.DeserializeObject<FlickrFeed>(cleanedResponse);
 
             return responseFeed.items;
         } 
 
-        private String composeUrl(String query){
+        private String ComposeUrl(string query){
 
             UriBuilder build = new UriBuilder("https://www.flickr.com/services/feeds/photos_public.gne?format=json");
 
@@ -48,7 +48,7 @@ namespace flickr_app.Provider
             return build.ToString();
         }
      
-        private String cleanMalformedJson(String response)
+        private string CleanMalformedJson(string response)
         {
             return Regex.Replace(response, "jsonFlickrFeed\\((.*)\\)", "$1", RegexOptions.Singleline);
         }
