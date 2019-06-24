@@ -28,6 +28,11 @@ or simply with docker compose
 $ cd flickr-app
 $ docker-compose up
 ```
+using docker-hub
+```bash
+$ docker run -p 80:80 acquarius/flickr-app:latest
+```
+
 It will use the port 80, if you have a virtualization please run 
 ```bash
 $ echo The app is available in $(docker-machine ip):80
